@@ -55,10 +55,10 @@ namespace GestionBanque.Model
         protected void Retrait(double Montant, double LigneDeCredit)
         {
             if (Montant <= 0)
-                return; //à remplacer plus tard par une exception
+                throw new ArgumentOutOfRangeException("Votre montant ne peut pas être négatif ou nul."); //à remplacer plus tard par une exception
 
             if (Solde - Montant < -LigneDeCredit)
-                return; //à remplacer plus tard par une exception
+                throw new SoldeInsuffisantException(); //à remplacer plus tard par une exception
 
             Solde -= Montant;
         }
@@ -66,7 +66,7 @@ namespace GestionBanque.Model
         public void Depot(double Montant)
         {
             if (Montant <= 0)
-                return; //à remplacer plus tard par une exception
+                throw new ArgumentOutOfRangeException("Votre montant ne peut pas être négatif ou nul."); //à remplacer plus tard par une exception
 
             Solde += Montant;
         }

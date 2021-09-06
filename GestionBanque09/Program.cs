@@ -22,10 +22,22 @@ namespace GestionBanque
             b.Ajouter(c);
             b.Ajouter(c2);
 
-            b["0000001"].Depot(500);
-            b["0000001"].Retrait(200);
-            b["0000002"].Depot(5000);
-            b["0000002"].Retrait(200);
+            try
+            {
+                b["0000001"].Depot(0);
+                b["0000001"].Retrait(200);
+                b["0000002"].Depot(5000);
+                b["0000002"].Retrait(200);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (SoldeInsuffisantException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
 
             Console.WriteLine(b["0000001"].Solde);
             Console.WriteLine(b["0000002"].Solde);
